@@ -1,0 +1,11 @@
+set rtp+=~/.vim/bundle/vundle/ 
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'taglist.vim'
+Bundle 'The-NERD-tree'                 
+Bundle 'The-NERD-Commenter'         
+Bundle 'ctrlp.vim'                 
+Bundle 'AutoClose'                
+Bundle 'Valloric/YouCompleteMe'  
+Bundle 'honza/vim-snippets'     
+Bundle 'Lokaltog/vim-easymotion'
