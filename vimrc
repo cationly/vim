@@ -18,6 +18,9 @@ Plugin 'ervandew/supertab'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'vim-scripts/a.vim'
 Plugin 'SirVer/ultisnips'
+Plugin 'luochen1990/rainbow'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
 
 "Plugin 'The-NERD-tree'                 
@@ -94,6 +97,9 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+"Rainbow Parentheses Improved
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle"
+
 " Uncomment the following to have Vim jump to the last position when reopening a file
 if has("autocmd")
 	  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -105,14 +111,20 @@ set sessionoptions="blank,buffers,globals,localoptions,tabpages,sesdir,folds,hel
 map <leader>ss :mksession! my.vim<cr> :wviminfo! my.viminfo<cr>
 map <leader>rs :source my.vim<cr> :rviminfo my.viminfo<cr>
 
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'"
+"
 " Ultisnips"
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+""let g:UltiSnipsSnippetDirectories=["UltiSnips", "bundle/vim-snippets/UltiSnips"]
 
 "-------------------------
 " Clang Completion
@@ -127,6 +139,7 @@ inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" :"\<PageDown>"
 inoremap <expr> <PageUp> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" :"\<PageUp>"
+
 
 " SuperTab option for context aware completion
 let g:SuperTabDefaultCompletionType = "context"
@@ -197,6 +210,14 @@ autocmd FileType cpp setlocal et sta sw=4 sts=4
 autocmd FileType cpp setlocal foldmethod=syntax
 autocmd FileType cpp map <F7> : call CPP() <CR>
 nmap <Leader>m :wa<CR>:make<CR><CR>:cw<CR>
+"octol/vim-cpp-enhanced-highlight'
+let g:cpp_class_scope_highlight                  = 1
+let g:cpp_member_variable_highlight              = 1
+let g:cpp_class_decl_highlight                   = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_experimental_template_highlight        = 1
+let g:cpp_concepts_highlight                     = 1
+let c_no_curly_error                             = 1
 
 
 " For CUDA
