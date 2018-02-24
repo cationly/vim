@@ -4,7 +4,8 @@
 1.2 cd fonts; ./install.sh
 
 2. make term to be colorful, add this lines into .bashrc
-if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then 
     export TERM='xterm-256color'
 else
     export TERM='xterm-color'
@@ -15,4 +16,4 @@ fi
   git clone https://github.com/cationly/vim.git
 
 -3. download vundle
-  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
