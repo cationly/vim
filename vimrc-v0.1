@@ -1,0 +1,160 @@
+let mapleader=","
+let g:mapleader=","
+map <silent> <leader>s :source ~/.vimrc<cr>
+map <silent> <leader>e :e ~/.vimrc<cr>
+"autocmd! bufwritepost .vimrc !source ~/.vimrc
+
+set langmenu=zh_CN.UTF-8
+
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+filetype plugin on
+filetype plugin indent on
+syntax enable
+syntax on
+
+"======================================================
+" GUI
+set nocompatible
+"set number
+" F2 to toggle the display of line number
+nnoremap <F2> :set nonumber!<CR>;set foldcolumn=0<CR>
+colorscheme graywh
+"set background=dark
+"set guifont=Inconsolata\ 16 
+set guifont=YaHei\ Consolas\ Hybrid\ 14 
+set ambiwidth=double
+set fileencoding=utf-8
+set fileencodings=utf-8,gb18030,big5
+set nowrap
+set guioptions+=b
+
+" Cursor
+set cursorcolumn
+set cursorline
+
+set backspace=indent,eol,start
+
+"-------------------
+" 缩进
+set tabstop=4
+set cindent shiftwidth=4
+set autoindent shiftwidth=4
+"set list
+"set listchars=tab:\|\ 
+"Indent Guide
+let g:indent_guides_auto_colors=1
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+nmap <Leader>ig :IndentGuidesToggle<CR>
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=2
+
+" Split window movement
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+set autochdir
+set foldmethod=indent
+
+" Uncomment the following to have Vim jump to the last position when reopening a file
+if has("autocmd")
+	  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+"======================================================
+" ------------------------------
+" Taglist
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+map <leader>td <Plug>TaskList
+
+"-------------------------
+" WinManager
+let g:winManagerWindowLayout='FileExplorer|TagList'
+" Press "wm" to show Taglist and Fileexplorer window
+nmap wm :WMToggle<CR>
+
+" ------------------------
+" minibuf
+let g:miniBufExplMapCTabSwitchBufs=1
+let g:miniBufExplMapWindowNavVim=1
+let g:miniBufExplMapWindowNavArrows=1
+
+"-------------------------
+" Cscope
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+" ------------------------
+"  自动补齐
+" NeoComplete
+"let g:NeoComplCache_EnableAtStartup = 1
+
+"-------------------------
+" Clang Completion
+" Complete options (disable preview scratch window)
+set completeopt=menu,menuone,longest
+" Limit popup menu height
+set pumheight=15
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" Enter
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"  
+inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" :"\<PageDown>"
+inoremap <expr> <PageUp> pumvisible() ? "\<PageUp>\<C-p>\<C-n>" :"\<PageUp>"
+   
+"-------------------------
+" SuperTab option for context aware completion
+let g:SuperTabDefaultCompletionType = "context"
+      
+" Disable auto popup, use <Tab> to autocomplete
+let g:clang_complete_auto = 0
+" Show clang errors in the quickfix window
+let g:clang_complete_copen = 1
+
+" GDB
+map <F7> :run macros/gdb_mappings.vim<CR>
+
+"================================================
+" For C++
+autocmd FileType c setlocal et sta sw=4 sts=4
+autocmd FileType c setlocal foldmethod=syntax
+
+" For C++
+autocmd FileType cpp setlocal et sta sw=4 sts=4
+autocmd FileType cpp setlocal foldmethod=syntax
+
+" For CUDA
+au BufNewFile,BufRead *.cu set filetype=cuda
+au BufNewFile,BufRead *.cuh set filetype=cuda
+autocmd FileType cuda setlocal et sta sw=4 sts=4
+autocmd FileType cuda setlocal foldmethod=syntax
+
+" For Python
+autocmd FileType python setlocal et sta sw=4 sts=4
+autocmd FileType python setlocal foldmethod=indent
+autocmd FileType python noremap <F7> :! ./% <cr>
+set foldlevel=0
+set ruler
+set showcmd
+
+"pydiction 1.2 python auto complete
+let g:pydiction_location = '/home/liyan/.vim/bundle/pydiction/complete-dict' 
+let g:pydiction_menu_height = 10 
+
+"autocmd BufNewFile,BufRead *.py setlocal
+"
+"
+" For Fortran
+"
+" For HTML
+autocmd FileType html setlocal et sta sw=4 sts=4
+autocmd FileType html setlocal foldmethod=indent
+
+
+
